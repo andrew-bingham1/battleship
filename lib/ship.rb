@@ -11,4 +11,8 @@ attr_reader :name, :length, :health, :sunk
   def sunk?
     @sunk
   end
+
+  def hit
+    @health -= 1
+  end
 end
