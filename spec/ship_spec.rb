@@ -21,7 +21,5 @@ RSpec.describe Ship do
 
       expect(cruiser.health).to eq(3)
     end
-
-
   end
 end
