@@ -17,6 +17,6 @@ RSpec.describe Cell do
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
     cell.place_ship(cruiser)
-    expect(cell.ship_in_cell).to eq(cruiser)
+    expect(cell.ship).to eq(cruiser)
   end
 end
