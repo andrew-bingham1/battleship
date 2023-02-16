@@ -14,5 +14,9 @@ attr_reader :name, :length, :health, :sunk
 
   def hit
     @health -= 1
+    if @health == 0 
+      @sunk = true
+      else
+    end
   end
 end
