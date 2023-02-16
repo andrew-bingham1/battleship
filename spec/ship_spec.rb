@@ -22,4 +22,13 @@ RSpec.describe Ship do
       expect(cruiser.health).to eq(3)
     end
   end
+
+  describe '#sunk?' do
+    it 'can check sink status' do
+      cruiser = Ship.new("Cruiser", 3)
+
+      expect(cruiser.sunk?).to eq(false)
+    end
+
+  end
 end
