@@ -8,5 +8,8 @@ RSpec.describe Cell do
     expect(cell).to be_a(Cell)
   end
 
-  
+  it 'attributes exist' do
+    cell = Cell.new("B4")
+    expect(cell.coordinate).to eq("B4")
+  end
 end
