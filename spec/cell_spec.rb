@@ -76,4 +76,11 @@ RSpec.describe Cell do
     cell_1.fire_upon
     expect(cell_1.render).to eq("X")
   end
+
+  it 'can render(true)' do
+    cell_1 = Cell.new("B4")
+
+    expect(cell_1.render(true)).to eq("S")
+  end
+
 end
