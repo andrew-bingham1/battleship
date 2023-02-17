@@ -33,29 +33,28 @@ class Cell
     end
   end
 
-    def render
-      if @targeted == false
-       return "."
-      elsif @targeted == true && self.ship == nil
-        return "M"
-      elsif @targeted == true && self.ship != nil && self.ship.sunk != true
-        return "H"
-      elsif self.ship.sunk == true 
-        return "X"
+    def render(show_ship = false)
+      if show_ship == false
+        if @targeted == false
+            return "."
+          elsif @targeted == true && self.ship == nil
+            return "M"
+          elsif @targeted == true && self.ship != nil && self.ship.sunk != true
+            return "H"
+          elsif self.ship.sunk == true 
+            return "X"
+        end
+      elsif show_ship == true
+        if @targeted == false
+            return "S"
+          elsif @targeted == true && self.ship == nil
+            return "M"
+          elsif @targeted == true && self.ship != nil && self.ship.sunk != true
+            return "H"
+          elsif self.ship.sunk == true 
+            return "X"
+        end
       end
     end
 
-  # def render 
-  #   if self.ship.sunk == true 
-  #     puts "X"
-  #     elsif ship.sunk == false && self.ship != nil
-  #       puts "H"
-  #     elsif @targeted == true && self.ship == nil
-  #       puts "M"
-  #     elsif @targeted == false
-  #       puts "."
-  #     else
-  #       puts "render method error"
-  #   end
-  # end
 end
