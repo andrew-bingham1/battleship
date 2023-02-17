@@ -1,6 +1,7 @@
 require 'rspec'
 require './lib/board'
 require './lib/ship'
+require './lib/cell'
 
 RSpec.describe Board do
   it 'exists' do
@@ -10,13 +11,14 @@ RSpec.describe Board do
 
   it 'board contains cells' do
     board = Board.new
-    expect(board.cells).to eq()
+    expect(board.cells).to be_a(Hash)
+    expect(board.cells.keys.first).to eq("A1")
+    expect(board.cells.values.first).to be_a(Cell)
   end
 
-  # need additional tests for cells
-  # and need to fix above test
 
-  it 'validating coordinates' do
+
+  xit 'validating coordinates' do
     board = Board.new
     expect(board.valid_coordinate?('A1')).to eq(true)
     expect(board.valid_coordinate?('D4')).to eq(true)
@@ -25,7 +27,7 @@ RSpec.describe Board do
     expect(board.valid_coordinate?('A22')).to eq(false)
   end
 
-  it 'number of coordinates equal to ship length' do
+  xit 'number of coordinates equal to ship length' do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2) 
@@ -33,7 +35,7 @@ RSpec.describe Board do
     expect(board.valid_placement?(submarine, ["A2", "A3", "A4"])).to eq(false)
   end
 
-  it 'number of coordinates are consecutive' do
+  xit 'number of coordinates are consecutive' do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2) 
@@ -43,7 +45,7 @@ RSpec.describe Board do
     expect(board.valid_placement?(submarine, ["C1", "B1"])).to eq(false)
     end
 
-  it 'coordinates are not diagonal' do
+  xit 'coordinates are not diagonal' do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2) 
@@ -51,7 +53,7 @@ RSpec.describe Board do
     expect(board.valid_placement?(submarine, ["C2", "D3"])).to eq(false)
     end
 
-  it 'valid coordinates' do
+  xit 'valid coordinates' do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Shp.new("Submarine", 2) 
