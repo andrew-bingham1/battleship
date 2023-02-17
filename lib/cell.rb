@@ -1,3 +1,6 @@
+
+
+
 class Cell
   attr_reader :coordinate,
               :ship,
@@ -29,4 +32,30 @@ class Cell
        self.ship.hit
     end
   end
+
+    def render
+      if @targeted == false
+       return "."
+      elsif @targeted == true && self.ship == nil
+        return "M"
+      elsif @targeted == true && self.ship != nil && self.ship.sunk != true
+        return "H"
+      elsif self.ship.sunk == true 
+        return "X"
+      end
+    end
+
+  # def render 
+  #   if self.ship.sunk == true 
+  #     puts "X"
+  #     elsif ship.sunk == false && self.ship != nil
+  #       puts "H"
+  #     elsif @targeted == true && self.ship == nil
+  #       puts "M"
+  #     elsif @targeted == false
+  #       puts "."
+  #     else
+  #       puts "render method error"
+  #   end
+  # end
 end
