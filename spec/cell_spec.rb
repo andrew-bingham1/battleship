@@ -19,4 +19,9 @@ RSpec.describe Cell do
     cell.place_ship(cruiser)
     expect(cell.ship).to eq(cruiser)
   end
+
+  it 'cell is emtpy true' do
+    cell = Cell.new("B4")
+    expect(cell.empty?).to eq(true)
+  end
 end
