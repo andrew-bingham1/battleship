@@ -46,5 +46,41 @@ RSpec.describe Cell do
     expect(cell.ship.health).to eq(2)
   end
 
+  it 'can render' do
+    cell_1 = Cell.new("B4")
+
+    expect(cell_1.render).to eq(".")
+  end
+
+  it 'can render_2' do
+    cell_1 = Cell.new("B4")
+    cell_1.fire_upon
+    expect(cell_1.render).to eq("M")
+  end
+
+  it 'can render_2' do
+    cell_1 = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+    cell_1.place_ship(cruiser)
+    cell_1.fire_upon
+    expect(cell_1.render).to eq("H")
+  end
   
+
+  it 'can render_2' do
+    cell_1 = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+    cell_1.place_ship(cruiser)
+    cruiser.hit
+    cruiser.hit
+    cell_1.fire_upon
+    expect(cell_1.render).to eq("X")
+  end
+
+  it 'can render(true)' do
+    cell_1 = Cell.new("B4")
+
+    expect(cell_1.render(true)).to eq("S")
+  end
+
 end
