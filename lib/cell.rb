@@ -25,5 +25,8 @@ class Cell
 
   def fire_upon
     @targeted = true
+    if ship != nil
+       self.ship.hit
+    end
   end
 end
