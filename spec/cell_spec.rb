@@ -24,4 +24,11 @@ RSpec.describe Cell do
     cell = Cell.new("B4")
     expect(cell.empty?).to eq(true)
   end
+
+  it 'place_ship changes empty to false' do
+    cell = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+    cell.place_ship(cruiser)
+    expect(cell.empty?).to eq(false)
+  end
 end
