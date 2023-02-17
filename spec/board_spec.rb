@@ -26,7 +26,7 @@ RSpec.describe Board do
     expect(board.valid_coordinate?('A22')).to eq(false)
   end
 
-  xit 'number of coordinates equal to ship length' do
+  it 'number of coordinates equal to ship length' do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2) 
@@ -34,7 +34,7 @@ RSpec.describe Board do
     expect(board.valid_placement?(submarine, ["A2", "A3", "A4"])).to eq(false)
   end
 
-  xit 'number of coordinates are consecutive' do
+  it 'number of coordinates are consecutive' do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2) 
