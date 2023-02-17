@@ -31,4 +31,8 @@ RSpec.describe Cell do
     cell.place_ship(cruiser)
     expect(cell.empty?).to eq(false)
   end
+
+  it '' do
+
+  end
 end
