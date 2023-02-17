@@ -6,4 +6,9 @@ RSpec.describe Board do
     board = Board.new
     expect(board).to be_a(Board)
   end
+
+  it 'board contains cells' do
+    board = Board.new
+    expect(board.cells).to eq()
+  end
 end
