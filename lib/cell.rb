@@ -3,7 +3,6 @@
 
 class Cell
   attr_reader :coordinate,
-              :ship,
               :targeted
 
   attr_accessor :ship 
