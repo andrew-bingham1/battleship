@@ -45,7 +45,7 @@ RSpec.describe Board do
     expect(board.valid_placement?(submarine, ["C1", "B1"])).to eq(false)
     end
 
-  xit 'coordinates are not diagonal' do
+  it 'coordinates are not diagonal' do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2) 
@@ -53,10 +53,10 @@ RSpec.describe Board do
     expect(board.valid_placement?(submarine, ["C2", "D3"])).to eq(false)
     end
 
-  xit 'valid coordinates' do
+  it 'valid coordinates' do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
-    submarine = Shp.new("Submarine", 2) 
+    submarine = Ship.new("Submarine", 2) 
     expect(board.valid_placement?(cruiser, ["A1", "A2", "A3"])).to eq(true)
     expect(board.valid_placement?(submarine, ["B1", "C1"])).to eq(true)
   end
