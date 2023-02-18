@@ -31,11 +31,17 @@ class Board
   end
 
   def valid_placement?(ship, loc_arr)
-    if ship.length == loc_arr.length
-      return true
-    else
-      return false
+    range1 = 'A1'..'A4'
+    range2 = 'B1'..'B4' 
+    range3 = 'C1'..'C4'
+    range4 = 'D1'..'D4'
+    superrange = [range1, range2, range3, range4] 
+    superrange.each do |range|
+      if range.each_cons(ship.length).to_a.include?(loc_arr) == true && ship.length == loc_arr.length
+        return true
+      else
+        return false 
+      end
     end
   end
-
 end
