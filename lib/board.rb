@@ -48,6 +48,17 @@ class Board
       end
     end
   end
+
+  def place(ship_name, coordinates)
+    coordinates.each do |coor|
+      self.cells.each do |key, value|
+        if coor == key
+          value.ship = ship_name
+        end
+      end
+    end 
+
+  end
 end
 
 

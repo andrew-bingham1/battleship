@@ -6,6 +6,8 @@ class Cell
               :ship,
               :targeted
 
+  attr_accessor :ship 
+
   def initialize(coordinate)
     @coordinate = coordinate
     @ship = nil
