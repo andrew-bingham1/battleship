@@ -34,26 +34,38 @@ class Board
     valid_cruiser = [['A1', 'B1', 'C1'], ['B1', 'C1', 'D1'], ['A2', 'B2', 'C2'], ['B2', 'C2', 'D2'], ['A3', 'B3', 'C3'], ['B3', 'C3', 'D3'], ['A4', 'B4', 'C4'], ['B4', 'C4', 'D4'], ['A1', 'A2', 'A3'], ['B1', 'B2', 'B3'], ['C1', 'C2', 'C3'], ['D1', 'D2', 'D3'], ['A2', 'A3', 'A4'], ['B2', 'B3', 'B4'], ['C2', 'C3', 'C4'], ['D2', 'D3', 'D4']]
     valid_sub = [['A1', 'A2'], ['A2', 'A3'], ['A3', 'A4'], ['B1', 'B2'], ['B2', 'B3'], ['B3', 'B4'], ['C1', 'C2'], ['C2', 'C3'], ['C3', 'C4'], ['D1', 'D2'], ['D2', 'D3'], ['D3', 'D4'], ['A1', 'B1'], ['B1', 'C1'], ['C1', 'D1'], ['A2', 'B2'], ['B2', 'C2'], ['C2', 'D2'], ['A3', 'B3'], ['B3', 'C3'], ['C3', 'D3'], ['A4', 'B4'], ['B4', 'C4'], ['C4', 'D4']]
   
-    if ship.name == "Cruiser"
-      if valid_cruiser.include?(loc_arr) == true && ship.length == loc_arr.length
-        return true
-      else
-        return false
-      end
-    elsif ship.name == "Submarine"
-      if valid_sub.include?(loc_arr) == true && ship.length == loc_arr.length
-        return true
-      else
-        return false
+    loc_arr.each do |coor|
+      self.cells.each do |key, value|
+        if coor == key
+          if value.empty? == true
+            if ship.name == "Cruiser"
+              if valid_cruiser.include?(loc_arr) == true && ship.length == loc_arr.length
+                return true
+              else
+                return false
+              end
+            elsif ship.name == "Submarine"
+              if valid_sub.include?(loc_arr) == true && ship.length == loc_arr.length
+                return true
+              else
+                return false
+              end
+            end
+          elsif value.empty? == false
+            return false
+             
+          end
+        end
       end
     end
   end
 
-  def place(ship_name, coordinates)
+  def place(ship_name, coordinates) 
     coordinates.each do |coor|
       self.cells.each do |key, value|
         if coor == key
           value.ship = ship_name
+          value.empty = false
         end
       end
     end 

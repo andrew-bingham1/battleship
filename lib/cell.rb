@@ -1,11 +1,9 @@
-
-
-
 class Cell
   attr_reader :coordinate,
               :targeted
 
-  attr_accessor :ship 
+  attr_accessor :ship,
+                :empty
 
   def initialize(coordinate)
     @coordinate = coordinate
