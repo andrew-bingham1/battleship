@@ -78,8 +78,14 @@ class Board
                       "B #{self.cells["B1"].render(board_show_ship)} #{self.cells["B2"].render(board_show_ship)} #{self.cells["B3"].render(board_show_ship)} #{self.cells["B4"].render(board_show_ship)}\n" +
                       "C #{self.cells["C1"].render(board_show_ship)} #{self.cells["C2"].render(board_show_ship)} #{self.cells["C3"].render(board_show_ship)} #{self.cells["C4"].render(board_show_ship)}\n" +
                       "D #{self.cells["D1"].render(board_show_ship)} #{self.cells["D2"].render(board_show_ship)} #{self.cells["D3"].render(board_show_ship)} #{self.cells["D4"].render(board_show_ship)}"
-    
+  end
 
+  def fire(location)
+    self.cells.each do |key, value|
+      if location == key
+        
+      end
+    end
   end
 end
 

@@ -44,7 +44,9 @@ class Cell
             return "X"
         end
       elsif show_ship == true
-        if @targeted == false
+        if @targeted == false && self.ship == nil 
+          return "."
+          elsif @targeted == false && self.ship != nil
             return "S"
           elsif @targeted == true && self.ship == nil
             return "M"
