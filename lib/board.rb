@@ -61,14 +61,16 @@ class Board
   end
 
   def place(ship_name, coordinates) 
-    coordinates.each do |coor|
-      self.cells.each do |key, value|
-        if coor == key
-          value.ship = ship_name
-          value.empty = false
+    if self.valid_placement?((ship_name), (coordinates)) == true 
+      coordinates.each do |coor|
+        self.cells.each do |key, value|
+          if coor == key
+            value.ship = ship_name
+            value.empty = false
+          end
         end
-      end
-    end 
+      end 
+    end
   end
 
   def render(board_show_ship = false)
