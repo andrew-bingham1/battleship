@@ -61,7 +61,7 @@ class Board
   end
 
   def place(ship_name, coordinates) 
-    if self.valid_placement?((ship_name), (coordinates)) == true 
+    # if self.valid_placement?((ship_name), (coordinates)) == true 
       coordinates.each do |coor|
         self.cells.each do |key, value|
           if coor == key
@@ -70,7 +70,7 @@ class Board
           end
         end
       end 
-    end
+    # end
   end
 
   def render(board_show_ship = false)
