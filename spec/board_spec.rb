@@ -97,19 +97,19 @@ RSpec.describe Board do
     expect(board.render(true)).to eq("  1 2 3 4 \nA S S S .\nB . . . .\nC . . . .\nD . . . .")
   end
 
-  xit 'hit and rendered on board' do
+  it 'hit and rendered on board' do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)  
     board.place(cruiser, ["A1", "A2", "A3"])
-    cruiser.hit
-
-
+    board.fire("A2")
+    expect(board.render).to eq("  1 2 3 4 \nA . H . .\nB . . . .\nC . . . .\nD . . . .")
   end
 
   xit 'miss and rendered on board' do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)  
     board.place(cruiser, ["A1", "A2", "A3"])
+    board.fire
   end
 
   xit 'sunk ship and rendered on board' do

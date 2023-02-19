@@ -83,7 +83,7 @@ class Board
   def fire(location)
     self.cells.each do |key, value|
       if location == key
-        
+        value.fire_upon
       end
     end
   end
