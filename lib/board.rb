@@ -71,12 +71,13 @@ class Board
     end 
   end
 
-  def render(show_ship= false)
+  def render(board_show_ship = false)
+
     board_rendering = "  1 2 3 4 \n" +
-                      "A #{self.cells["A1"].render(true)} #{self.cells["A2"].render(true)} #{self.cells["A3"].render(true)} #{self.cells["A4"].render(true)}\n" +
-                      "B #{self.cells["B1"].render(true)} #{self.cells["B2"].render(true)} #{self.cells["B3"].render(true)} #{self.cells["B4"].render(true)}\n" +
-                      "C #{self.cells["C1"].render(true)} #{self.cells["C2"].render(true)} #{self.cells["C3"].render(true)} #{self.cells["C4"].render(true)}\n" +
-                      "D #{self.cells["D1"].render(true)} #{self.cells["D2"].render(true)} #{self.cells["D3"].render(true)} #{self.cells["D4"].render(true)}"
+                      "A #{self.cells["A1"].render(board_show_ship)} #{self.cells["A2"].render(board_show_ship)} #{self.cells["A3"].render(board_show_ship)} #{self.cells["A4"].render(board_show_ship)}\n" +
+                      "B #{self.cells["B1"].render(board_show_ship)} #{self.cells["B2"].render(board_show_ship)} #{self.cells["B3"].render(board_show_ship)} #{self.cells["B4"].render(board_show_ship)}\n" +
+                      "C #{self.cells["C1"].render(board_show_ship)} #{self.cells["C2"].render(board_show_ship)} #{self.cells["C3"].render(board_show_ship)} #{self.cells["C4"].render(board_show_ship)}\n" +
+                      "D #{self.cells["D1"].render(board_show_ship)} #{self.cells["D2"].render(board_show_ship)} #{self.cells["D3"].render(board_show_ship)} #{self.cells["D4"].render(board_show_ship)}"
     
 
   end
