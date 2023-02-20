@@ -28,7 +28,7 @@ class Board
   end
 
   def valid_coordinate?(loc)
-    if self.cells.keys.include? (loc)
+    if self.cells.keys.include?(loc)
       return true
     else
       return false
