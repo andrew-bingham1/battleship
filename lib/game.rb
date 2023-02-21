@@ -1,5 +1,11 @@
 class Game
+  attr_accessor :player_shot,
+                :computer_shot
+
+
   def initialize
+    @player_shot = ""
+    @computer_shot = ""
     
     puts "Welcome to BATTLESHIP"
     puts "Enter p to play. Enter q to quit."
@@ -33,10 +39,7 @@ class Game
         print "The Cruiser is three units long and the Submarine is two units long.\n"
         print "Enter the squares for the Cruiser (3 spaces):\n"
 
-        ### program now takes user input and renders it into 
-        ### useable info for the place method
-        ### and places the ships 
-        ### repeats for the second ship (sub)
+        
         
         loop do 
           player_cruiser_array = gets.upcase.split(' ')
@@ -67,52 +70,52 @@ class Game
           print "*** Computer's Board ***\n\n"
           print computer.render + "\n"
           print "\n*** Your Board ***\n\n"
-          print player.render(true) + "\n"
+          print player.render(true) + "\n\n"
 
           loop do 
             print "Enter the coordinate for your shot:\n"
 
-            player_shot = gets.upcase.to_s
-              if player.valid_coordinate?(player_shot) == false
-                print "Please enter a valid coordinate:\n"
-              elsif player.valid_coordinate?(player_shot) == true
+            player_shot = gets.upcase.chomp
+              if player.valid_coordinate?(player_shot) == true
                 computer.fire(player_shot)
                 break
+              elsif player.valid_coordinate?(player_shot) == false 
+                print "Please enter a valid coordinate:\n"
               end
           end
 
-          computer_shot = player.cells.sample 
+          computer_shot = player.cells.keys.sample 
           player.fire(computer_shot)
 
-          if computer.cells[player_shot].render == "M"
-             print "Your shot on #{player_shot} was a miss.\n"
-          elsif computer.cells[player_shot].render == "H"
-            print "Your shot on #{player_shot} was a hit.\n"
+          computer.cells.each do |key, value|
+            if player_shot == key 
+              if value.render == "M"
+                print "Your shot on #{player_shot} was a miss.\n\n"
+              elsif value.render == "H"
+                print "Your shot on #{player_shot} was a hit.\n\n"
+              end
+            end
+          end
+          require 'pry'; binding.pry
+          player.cells.each do |key, value|
+            if computer_shot == key 
+              if value.render == "M"
+                print "My shot on #{computer_shot} was a miss.\n\n"
+              elsif value.render == "H"
+                print "My shot on #{computer_shot} was a hit.\n\n"
+              end
+            end
           end
 
-          if player.cells[computer_shot].render == "M"
-            print "My shot on #{computer_shot} was a miss.\n"
-          elsif player.cells[computer_shot].render == "H"
-            print "My shot on #{computer_shot} was a hit\n"
+          if cruiser_p.sunk? == true && submarine_p.sunk? == true 
+            print "I win"
+            break
+          elsif cruiser_c.sunk? == true && submarine_c.sunk? == true
+            print "You win"
+            break
           end
           
         end
-      
-        
-
-       
-         
-        
-        # while crusier_p.sunk? != true && submarine_p.sunk? != true || crusier_c.sunk? != true && submarine_c.sunk? != true
-        ### user is prompted to pick a location to fire at beginning the game (maybe use loop)
-        ### each time the there is a fire action the boards are 
-        ### rerendered with the new info being displayed 
-        ### feedback is also given in the form of a printed statement 
-          # end 
-
-        ### END GAME 
-
-
 
       when "q" 
         print "restarts game"
@@ -121,6 +124,3 @@ class Game
   end
 end
 
-
-
-# print "These are the game boards.\nThe top one is mine \nand the bottom is yours.\n" + computer.render + "\n" +  "===========\n" + player.render(true) 
