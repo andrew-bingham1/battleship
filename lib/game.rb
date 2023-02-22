@@ -143,13 +143,28 @@ class Game
 
   def end_conditions
     if cruiser_p.sunk? == true && submarine_p.sunk? == true 
-      print "I win\n\n"
+      print "I win!\n\n"
+      wipe_boards
       self.start
     elsif cruiser_c.sunk? == true && submarine_c.sunk? == true
-      print "You win\n\n"
+      print "You win!\n\n"
+      wipe_boards
       self.start
     else 
       self.turn
+    end
+  end
+
+  def wipe_boards
+    computer.cells.each do |_key, value|
+      value.ship = nil
+      value.empty = true
+      value.targeted = false
+    end
+    player.cells.each do |_key, value|
+      value.ship = nil
+      value.empty = true
+      value.targeted = false
     end
   end
 
