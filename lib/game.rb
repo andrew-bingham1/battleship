@@ -2,16 +2,34 @@ class Game
   attr_accessor :player_shot,
                 :computer_shot
 
-  def initialize
+  attr_reader   :input,
+                :computer,
+                :player,
+                :cruiser_c,
+                :cruiser_p,
+                :submarine_c,
+                :submarine_p
+              
+  def initialize  
     @player_shot = ""
     @computer_shot = ""
     @computer_shot_bank = ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4", "D1", "D2", "D3", "D4",]
+    @input = ""
+    @computer = computer = Board.new 
+    @player = player = Board.new 
+    @cruiser_p = cruiser_p = Ship.new("Cruiser", 3)
+    @submarine_p = submarine_p = Ship.new("Submarine", 2)
+    @cruiser_c = cruiser_c = Ship.new("Cruiser", 3)
+    @submarine_c = submarine_c = Ship.new("Submarine", 2) 
+    @player_shot = ""
+    @computer_shot = ""
+    
   end
 
   def start 
     puts "Welcome to BATTLESHIP"
     puts "Enter p to play. Enter q to quit."
-    input = gets.chomp.to_s
+    @input = gets.chomp.to_s
     start_logic
   end
 
@@ -36,10 +54,10 @@ class Game
         computer_cru_loc = computer.valid_cruiser.sample
       end
     end
-    player_place_cruiser
+    player_place_ships
   end
 
-  def player_place_cruiser
+  def player_place_ships
     print "I have laid out my ships on the grid.\n"
     print "You now need to lay out your two ships.\n"
     print "The Cruiser is three units long and the Submarine is two units long.\n"
@@ -49,14 +67,12 @@ class Game
         if player.valid_cruiser.include?(player_cruiser_array) == true
           player.place(cruiser_p, player_cruiser_array)
           print "Your Cruiser has been placed at #{player_cruiser_array.to_s}\n"
-          break
+          break 
         elsif player.valid_cruiser.include?(player_cruiser_array) == false 
           print "Those are invalid coordinates. Please try again:\n"
         end
-    player_place_sub
-  end
-
-  def player_place_sub
+    end
+    print "Enter the squares for the Submarine (2 spaces):\n"
     loop do 
       player_sub_array = gets.upcase.split(' ')
         if player.valid_sub.include?(player_sub_array) == true
@@ -69,6 +85,8 @@ class Game
     end
     turn
   end
+  
+  
 
   def render_boards
     print "*** Computer's Board ***\n\n"
@@ -78,63 +96,69 @@ class Game
   end
 
   def player_fire_loop  
-   loop do 
-      print "Enter the coordinate for your shot:\n"
-      player_shot = gets.upcase.chomp
-      computer.cells.each do |key, value|
-        if player_shot == key
-          if player.valid_coordinate?(player_shot) == true && value.fired_upon? == false 
-            computer.fire(player_shot)
-            break
-          elsif player.valid_coordinate?(player_shot) == false || value.fired_upon? == true
-            print "Please enter a valid coordinate:\n"
-          end
-        end
-    end
-
-    def computer_shoots
-      computer_shot = @computer_shot_bank.sample
-      @computer_shot_bank.delete(computer_shot)
-      player.fire(computer_shot)
-    end
-
-    def player_feedback
-      computer.cells.each do |key, value|
-        if player_shot == key 
-          if value.render == "M"
-            print "Your shot on #{player_shot} was a miss.\n\n"
-          elsif value.render == "H"
-            print "Your shot on #{player_shot} was a hit.\n\n"
-          elsif value.render == "X"
-            print "Your shot sank my #{value.ship.name}!\n\n"
-          end
-        end
+    puts "Enter the coordinate for your shot:"
+    loop do
+      @player_shot = gets.chomp.upcase
+      if computer.valid_coordinate?(player_shot) && computer.cells[player_shot].fired_upon? == false
+        computer.fire(player_shot)
+        break
+      else
+        puts "Please enter a valid coordinate."
       end
     end
+  end
 
-    def computer_feeback
-      player.cells.each do |key, value|
-        if computer_shot == key 
-          if value.render == "M"
+  def computer_shoots
+    @computer_shot = @computer_shot_bank.sample
+    @computer_shot_bank.delete(computer_shot)
+    player.fire(computer_shot)
+  end
+
+  def feedback
+    computer.cells.each do |key, value|
+      if @player_shot == key 
+        if value.render == "M"
+            print "\nYour shot on #{player_shot} was a miss.\n\n"
+        elsif value.render == "H"
+            print "\nYour shot on #{player_shot} was a hit.\n\n"
+        elsif value.render == "X"
+            print "\nYour shot sank my #{value.ship.name}!\n\n"
+        end
+      
+      end
+    end
+    player.cells.each do |key, value|
+      if @computer_shot == key 
+        if value.render == "M"
             print "My shot on #{computer_shot} was a miss.\n\n"
-          elsif value.render == "H"
+        elsif value.render == "H"
             print "My shot on #{computer_shot} was a hit.\n\n"
-          elsif value.render == "X"
-            print "Your shot sank my #{value.ship.name}!\n\n"
-          end
+        elsif value.render == "X"
+            print "My shot sank your #{value.ship.name}!\n\n"
         end
+      
       end
     end
+  end
 
-    def end_conditions
-      if cruiser_p.sunk? == true && submarine_p.sunk? == true 
-        print "I win"
-        self.start
-      elsif cruiser_c.sunk? == true && submarine_c.sunk? == true
-        print "You win"
-        self.start
-      end
+  def end_conditions
+    if cruiser_p.sunk? == true && submarine_p.sunk? == true 
+      print "I win\n\n"
+      self.start
+    elsif cruiser_c.sunk? == true && submarine_c.sunk? == true
+      print "You win\n\n"
+      self.start
+    else 
+      self.turn
     end
+  end
 
+  def turn 
+    render_boards
+    player_fire_loop
+    computer_shoots
+    feedback
+    end_conditions
+  end
 
 end

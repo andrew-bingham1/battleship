@@ -3,12 +3,7 @@ require './lib/ship'
 require './lib/cell'
 require './lib/game'
 
-computer = Board.new 
-player = Board.new 
-cruiser_p = Ship.new("Cruiser", 3)
-submarine_p = Ship.new("Submarine", 2)
-cruiser_c = Ship.new("Cruiser", 3)
-submarine_c = Ship.new("Submarine", 2) 
+game = Game.new
 
-#type game = Game.new to start the game 
+### Please type "game.start" to begin ###
 require 'pry'; binding.pry
