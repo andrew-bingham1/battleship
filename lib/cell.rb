@@ -58,32 +58,4 @@ class Cell
       end
     end
   end
-
-  #   if @targeted == false && show_ship == false && self.ship == nil
-  #       return "."
-  #     elsif @targeted == false && show_ship == true && self.ship != nil
-  #       return "S"
-  #     elsif @targeted == true && self.ship == nil
-  #       return "M"
-  #     elsif @targeted == true && self.ship != nil && self.ship.sunk != true
-  #       return "H"
-  #     elsif @targeted == true && self.ship != nil && self.ship.sunk? == true
-  #       return "X"
-  #   end
-  # end
-
-  # def render(show_ship = false)
-  #   if self.fired_upon? == false && show_ship == true && self.empty? == false
-  #     return "S"
-  #   elsif show_ship == false
-  #     return "."
-  #   elsif self.fired_upon? == true && self.empty? == true
-  #     return "M"
-  #   elsif self.fired_upon? == true && self.empty? == false
-  #     return "H"
-  #   elsif self.fired_upon? == true && self.ship.sunk == true
-  #     return "X"
-
-  #   end
-
 end
